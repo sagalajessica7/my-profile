@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jessica Sarah Mei Sagala | Professional Profile</title>
+    <!-- Google Fonts (Inter & Playfair Display untuk kesan mewah) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 100%);
+            --card-bg: rgba(22, 28, 45, 0.6);
+            --border-color: rgba(226, 180, 151, 0.15); /* Rose Gold Accent */
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary: #e2b497; /* Elegant Rose Gold */
+            --primary-glow: rgba(226, 180, 151, 0.3);
+            --accent: #fb7185; /* Soft Rose */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1050px;
+            padding: 4rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* HERO HEADER BLOCK */
+        .hero-block {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .hero-block h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-block p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* MODERN ACCENTED TABS CONTROL */
+        .tab-controller {
+            display: flex;
+            background: rgba(17, 24, 39, 0.8);
+            padding: 0.4rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 3.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.8rem 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .tab-btn.active-tab {
+            background: var(--primary);
+            color: #0b0f19;
+            font-weight: 600;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .tab-btn.active-tab i {
+            transform: scale(1.1);
+        }
+
+        /* GLASSMORPHISM MAIN PANELS */
+        .display-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            width: 100%;
+            padding: 3.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .panel-view {
+            display: none; /* Controlled by jQuery */
+        }
+
+        .panel-view.current-view {
+            display: block;
+            animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* OBJECTIVE & SUMMARY BOX */
+        .summary-box {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* CV TIMELINE FORMAT */
+        .cv-grid-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cv-grid-title i {
+            font-size: 1.3rem;
+        }
+
+        .timeline-wrapper {
+            margin-bottom: 3.5rem;
+        }
+
+        .node-item {
+            border-left: 2px solid var(--border-color);
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .node-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .node-meta {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .node-header {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0.2rem 0;
+            color: #ffffff;
+        }
+
+        .node-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
+        .node-details ul {
+            padding-left: 1.2rem;
+            color: #e5e7eb;
+        }
+
+        .node-details li {
+            margin-bottom: 0.5rem;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* SKILLS STYLING */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group h4 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+            border-left: 3px solid var(--primary);
+            padding-left: 0.5rem;
+        }
+
+        .badge-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            color: #d1d5db;
+            transition: all 0.3s;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--primary);
+            background: rgba(226, 180, 151, 0.05);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* PORTFOLIO SHOWCASE (PRESENTATION LAYOUT) */
+        .showcase-item {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+
+        .showcase-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-display {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .showcase-display img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .showcase-item:hover .showcase-display img {
+            transform: scale(1.04);
+        }
+
+        .showcase-info {
+            flex: 1.2;
+        }
+
+        .showcase-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .showcase-info p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* FOOTER & CHANNELS */
+        footer {
+            margin-top: 4.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .channel-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .channel-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .channel-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        /* KEYFRAME ANIMATIONS */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .display-card { padding: 2rem; }
+            .showcase-item, .showcase-item:nth-child(even) {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .hero-block h1 { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- HEADER ELEGAN -->
+        <header class="hero-block">
+            <h1>Jessica Sarah Mei Sagala</h1>
+            <p>Educator & Creative Digital Entrepreneur</p>
+        </header>
+
+        <!-- MENU NAVIGASI DUA TAB UTAMA -->
+        <div class="tab-controller">
+            <button class="tab-btn active-tab" data-panel="#cv-panel">
+                <i class="fa-regular fa-id-card"></i> Curriculum Vitae
+            </button>
+            <button class="tab-btn" data-panel="#portfolio-panel">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Portfolio
+            </button>
+        </div>
+
+        <!-- TEMPAT KONTEN DINAMIS -->
+        <div class="display-card">
+            
+            <!-- PANEL 1: DATA CV -->
+            <div id="cv-panel" class="panel-view current-view">
+                
+                <p class="summary-box">
+                    A dynamic and versatile Bachelor of Education graduate with a strong entrepreneurial mindset and a passion for technology and digital creation. Demonstrated track record in managing retail and micro-investment businesses for over 5 years, while self-teaching advanced video editing skills. A fast learner and recipient of a prestigious government language scholarship, currently leveraging a strong foundation in English and German (B1) to transition into the global technology ecosystem.
+                </p>
+
+                <div class="timeline-wrapper">
+                    <h3 class="cv-grid-title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h3>
+                    
+                    <div class="node-item">
+                        <div class="node-meta">2025 – PRESENT</div>
+                        <h4 class="node-header">Founder & Owner</h4>
+                        <h5 class="node-sub">emasku.id — Indonesia</h5>
+                        <div class="node-details">
+                            <ul>
+                                <li>Founded and managed a micro-investment and gold trading initiative, overseeing daily operations, financial tracking, and customer relations.</li>
+                                <li>Developed targeted digital marketing strategies to promote alternative asset options and build long-term trust with clients.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="node-item">
+                        <div class="node-meta">2024 – PRESENT</div>
+                        <h4 class="node-header">Independent Digital Content Creator</h4>
+                        <h5 class="node-sub">YouTube & CapCut — Remote</h5>
+                        <div class="node-details">
+                            <ul>
+                                <li>Self-taught advanced mobile and desktop video editing techniques, producing content that garnered thousands of organic views.</li>
+                                <li>Selected as an official CapCut Template Creator, experimenting with visual layouts, cinematic transitions, and storytelling to maximize user engagement.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="node-item">
+                        <div class="node-meta">2020 – 2025</div>
+                        <h4 class="node-header">Business Owner & Manager</h4>
+                        <h5 class="node-sub">Glory Cell / Glory Shop — Indonesia</h5>
+                        <div class="node-details">
+                            <ul>
+                                <li>Successfully operated a retail mobile counter business, managing over 300 inventory items and maintaining an average monthly turnover of IDR 35 Million.</li>
+                                <li>Optimized retail shelf layouts for premium visual product positioning and handled direct high-volume daily customer inquiries.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="node-item">
+                        <div class="node-meta">2019 – 2020</div>
+                        <h4 class="node-header">Marketing Staff</h4>
+                        <h5 class="node-sub">PT AEON Credit Service Indonesia</h5>
+                        <div class="node-details">
+                            <ul>
+                                <li>Identified high-potential consumer applicants and presented point-of-sale credit solutions to increase retail partner revenue.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="node-item">
+                        <div class="node-meta">2017 – 2018</div>
+                        <h4 class="node-header">Senior Experience Consultant</h4>
+                        <h5 class="node-sub">PT Accentuates — Jakarta, Indonesia</h5>
+                        <div class="node-details">
+                            <ul>
+                                <li>Demonstrated high-end device features to consumers and evaluated daily sales inventory logs.</li>
+                                <li>Awarded a professional Series Reward Incentive Trip to Bangkok, Thailand, for outstanding sales quota achievements.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <h3 class="cv-grid-title"><i class="fa-solid fa-graduation-cap"></i> Education & Achievements</h3>
+                    
+                    <div class="node-item">
+                        <div class="node-meta">GRADUATED 2024</div>
+                        <h4 class="node-header">Bachelor of Education in English</h4>
+                        <h5 class="node-sub">Universitas Indraprasta PGRI — Jakarta, Indonesia</h5>
+                        <p class="node-details" style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem;">Relevant Coursework: Computer Assisted Language Learning, Educational Research Statistics, Computer Applications.</p>
+                    </div>
+
+                    <div class="node-item">
+                        <div class="node-meta">EARNED 2026</div>
+                        <h4 class="node-header">German Language Training Scholarship (Level B1)</h4>
+                        <h5 class="node-sub">Provincial Government of West Java (Pemprov Jawa Barat)</h5>
+                        <p class="node-details" style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem;">Selected into an intensive language program, successfully advancing professional cross-cultural communications to European B1 standards.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="cv-grid-title"><i class="fa-solid fa-sliders"></i> Core Skillsets</h3>
+                    <div class="skills-container">
+                        <div class="skill-group">
+                            <h4>Business Management</h4>
+                            <div class="badge-cloud">
+                                <span class="skill-badge">Entrepreneurship</span>
+                                <span class="skill-badge">Retail Operations</span>
+                                <span class="skill-badge">Financial Planning</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>Creative & Tech</h4>
+                            <div class="badge-cloud">
+                                <span class="skill-badge">Video Editing</span>
+                                <span class="skill-badge">Content Strategy</span>
+                                <span class="skill-badge">Advanced MS Excel</span>
+                                <span class="skill-badge">Canva Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h4>Languages</h4>
+                            <div class="badge-cloud">
+                                <span class="skill-badge">English (Academic)</span>
+                                <span class="skill-badge">German (B1 Certified)</span>
+                                <span class="skill-badge">Indonesian (Native)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PANEL 2: DATA PORTFOLIO DISPLAY (LAYOUT PRESENTASI) -->
+            <div id="portfolio-panel" class="panel-view">
+                
+                <!-- Proyek 1 -->
+                <div class="showcase-item">
+                    <div class="showcase-display">
+                        <!-- Ganti URL ini dengan gambar screenshot bisnis emasku.id Anda -->
+                        <img src="https://images.unsplash.com/photo-1610374792793-f016b77ca51a?q=80&w=500&auto=format&fit=crop" alt="Emasku Asset">
+                    </div>
+                    <div class="showcase-info">
+                        <h3>emasku.id Digital Venture</h3>
+                        <p>A smart micro-investment financial initiative created to simplify alternative assets trading. Engineered from the ground up to cultivate financial security and deliver personalized client customer services dynamically.</p>
+                        <div class="badge-cloud">
+                            <span class="skill-badge">Financial Strategy</span>
+                            <span class="skill-badge">Customer Relations</span>
+                            <span class="skill-badge">Digital Branding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyek 2 -->
+                <div class="showcase-item">
+                    <div class="showcase-display">
+                        <!-- Ganti URL ini dengan screenshot software editor video / channel Anda -->
+                        <img src="https://images.unsplash.com/photo-1622737133809-d95047b9e673?q=80&w=500&auto=format&fit=crop" alt="Video Editing Asset">
+                    </div>
+                    <div class="showcase-info">
+                        <h3>Creative Media & Digital Storytelling</h3>
+                        <p>An expansive portfolio consisting of high-impact visual content engineering across global platforms. Leverages advanced, platform-specific storytelling templates to scale viewer growth and maximize digital retention analytics.</p>
+                        <div class="badge-cloud">
+                            <span class="skill-badge">Video Architecture</span>
+                            <span class="skill-badge">CapCut Creator</span>
+                            <span class="skill-badge">Media Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SANITIZED CONTACT CHANNELS FOOTER -->
+        <footer>
+            <div class="channel-links">
+                <a href="mailto:sagalajessica7@gmail.com" title="Email Me"><i class="fa-regular fa-envelope"></i></a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <p>&copy; 2026 Jessica Sarah Mei Sagala. Protected & Sanitized Public Portfolio.</p>
+        </footer>
+    </div>
+
+    <!-- LOGIKA TRANSISI TAB KREATIF JREQUY -->
+    <script>
+        $(document).ready(function() {
+            $('.tab-btn').on('click', function() {
+                // Jangan jalankan jika mengklik tombol yang sudah aktif
+                if($(this).hasClass('active-tab')) return;
+
+                // Transisi tombol menu
+                $('.tab-btn').removeClass('active-tab');
+                $(this).addClass('active-tab');
+
+                var selectedPanel = $(this).data('panel');
+
+                // Animasi menyembunyikan panel lama secara halus sebelum menampilkan yang baru
+                $('.panel-view.current-view').fadeOut(250, function() {
+                    $(this).removeClass('current-view');
+                    $(selectedPanel).fadeIn(300).addClass('current-view');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
