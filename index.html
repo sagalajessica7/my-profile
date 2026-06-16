@@ -16,6 +16,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
+   /* ============================================================
+      WEBSITE STYLES (tidak diubah)
+      ============================================================ */
    :root {
     --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 100%);
     --card-bg: rgba(22, 28, 45, 0.6);
@@ -326,47 +329,28 @@
     text-shadow: 0 0 10px var(--primary-glow);
    }
    @keyframes fadeInDown {
-    from {
-     opacity: 0;
-     transform: translateY(-20px);
-    }
-    to {
-     opacity: 1;
-     transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
    }
    @keyframes fadeInUp {
-    from {
-     opacity: 0;
-     transform: translateY(30px);
-    }
-    to {
-     opacity: 1;
-     transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
    }
    @media (max-width: 850px) {
-    .display-card {
-     padding: 2rem;
-    }
+    .display-card { padding: 2rem; }
     .showcase-item,
-    .showcase-item:nth-child(even) {
-     flex-direction: column;
-     gap: 2rem;
-    }
-    .hero-block h1 {
-     font-size: 2.3rem;
-    }
-   }
-   
-   /* AREA RENDERING PDF DEFAULT HIDDEN */
-   #pdf-render-area {
-    display: none;
+    .showcase-item:nth-child(even) { flex-direction: column; gap: 2rem; }
+    .hero-block h1 { font-size: 2.3rem; }
    }
 
-   /* ==========================================================================
-      PERBAIKAN CSS KONTRAST UTK EKSPORT PDF (TEXT HITAM SOLID & GAMBAR CLEAR)
-      ========================================================================== */
+   /* ============================================================
+      AREA RENDER PDF — HIDDEN DI HALAMAN WEB
+      ============================================================ */
+   #pdf-render-area { display: none; }
+
+   /* ============================================================
+      PORTFOLIO PDF STYLES (tidak berubah)
+      ============================================================ */
    .pdf-print-mode {
     background: #ffffff !important;
     color: #000000 !important;
@@ -374,8 +358,6 @@
     box-sizing: border-box !important;
     padding: 8px !important;
    }
-   
-   /* Memaksa tumpukan elemen berada paling atas & teks berwarna solid pekat (Menghapus Transparansi) */
    .pdf-print-mode *,
    .pdf-print-mode h1,
    .pdf-print-mode h3,
@@ -386,12 +368,11 @@
    .pdf-print-mode span {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
-    background-color: #ffffff !important; /* Menutup kebocoran background gelap */
+    background-color: #ffffff !important;
     text-shadow: none !important;
     opacity: 1 !important;
-    z-index: 999 !important; /* Memposisikan text paling depan */
+    z-index: 999 !important;
    }
-   
    .pdf-print-mode .pdf-header {
     text-align: center !important;
     margin-bottom: 30px !important;
@@ -418,11 +399,7 @@
     border-bottom: 1px solid #000000 !important;
     padding-bottom: 5px !important;
    }
-   .pdf-print-mode .cv-grid-title i {
-    display: none !important;
-   }
-   
-   /* Mengatur Perataan Teks Tubuh Dokumen Rata Kanan-Kiri (Justify) */
+   .pdf-print-mode .cv-grid-title i { display: none !important; }
    .pdf-print-mode .summary-box {
     font-size: 1.05rem !important;
     line-height: 1.6 !important;
@@ -446,43 +423,24 @@
     background: #000000 !important;
     box-shadow: none !important;
    }
-   .pdf-print-mode .node-meta {
-    font-weight: 700 !important;
-    font-size: 0.85rem !important;
-   }
-   .pdf-print-mode .node-header {
-    font-size: 1.2rem !important;
-    font-weight: 700 !important;
-   }
-   .pdf-print-mode .node-sub {
-    font-style: italic !important;
-    margin-bottom: 5px !important;
-   }
-   .pdf-print-mode .node-details ul {
-    padding-left: 15px !important;
-   }
+   .pdf-print-mode .node-meta { font-weight: 700 !important; font-size: 0.85rem !important; }
+   .pdf-print-mode .node-header { font-size: 1.2rem !important; font-weight: 700 !important; }
+   .pdf-print-mode .node-sub { font-style: italic !important; margin-bottom: 5px !important; }
+   .pdf-print-mode .node-details ul { padding-left: 15px !important; }
    .pdf-print-mode .node-details li {
     font-size: 0.95rem !important;
     line-height: 1.5 !important;
     margin-bottom: 5px !important;
     text-align: justify !important;
    }
-   .pdf-print-mode .skills-container {
-    display: block !important;
-   }
-   .pdf-print-mode .skill-group {
-    margin-bottom: 15px !important;
-   }
+   .pdf-print-mode .skills-container { display: block !important; }
+   .pdf-print-mode .skill-group { margin-bottom: 15px !important; }
    .pdf-print-mode .skill-group h4 {
     border-left: 3px solid #000000 !important;
     padding-left: 8px !important;
     margin-bottom: 8px !important;
    }
-   .pdf-print-mode .badge-cloud {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 5px !important;
-   }
+   .pdf-print-mode .badge-cloud { display: flex !important; flex-wrap: wrap !important; gap: 5px !important; }
    .pdf-print-mode .skill-badge {
     background: #ffffff !important;
     border: 1px solid #000000 !important;
@@ -490,8 +448,6 @@
     border-radius: 4px !important;
     font-size: 0.85rem !important;
    }
-   
-   /* Mengembalikan skema render layout baris portofolio agar gambar stabil */
    .pdf-print-mode .showcase-item {
     display: table !important;
     width: 100% !important;
@@ -509,8 +465,6 @@
     overflow: visible !important;
     background-color: #ffffff !important;
    }
-   
-   /* Mengunci kejelasan rendering aset gambar */
    .pdf-print-mode .showcase-display img {
     width: 100% !important;
     max-width: 180px !important;
@@ -541,12 +495,343 @@
    .pdf-print-mode .showcase-info p {
     font-size: 0.95rem !important;
     line-height: 1.5 !important;
-    text-align: justify !important; /* Rata kanan-kiri deskripsi portofolio */
+    text-align: justify !important;
     margin-bottom: 10px !important;
    }
-   .page-break-avoid {
-    page-break-inside: avoid !important;
+   .page-break-avoid { page-break-inside: avoid !important; }
+
+   /* ============================================================
+      CV PDF — LAYOUT KREATIF 1 HALAMAN A4 (2-KOLOM SIDEBAR)
+      Hanya aktif di dalam #pdf-render-area.cv-pdf-mode
+      ============================================================ */
+   #pdf-render-area.cv-pdf-mode {
+    display: block;
+    width: 210mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
    }
+
+   /* Layout utama: sidebar kiri + kolom kanan */
+   #pdf-render-area.cv-pdf-mode .cv-pdf-wrapper {
+    display: table;
+    width: 100%;
+    height: 297mm;
+    table-layout: fixed;
+   }
+
+   /* ── SIDEBAR KIRI ── */
+   #pdf-render-area.cv-pdf-mode .cv-pdf-sidebar {
+    display: table-cell;
+    width: 66mm;
+    vertical-align: top;
+    background: #1a1f2e;
+    padding: 10mm 6mm 8mm 6mm;
+    box-sizing: border-box;
+   }
+
+   /* Avatar inisial */
+   #pdf-render-area.cv-pdf-mode .cv-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #e2b497;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 6px auto;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1f2e;
+    letter-spacing: -1px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-sidebar-name {
+    text-align: center;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 2px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-sidebar-title {
+    text-align: center;
+    color: #e2b497;
+    font-size: 7.5px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+   }
+
+   /* Garis pemisah sidebar */
+   #pdf-render-area.cv-pdf-mode .cv-sidebar-divider {
+    border: none;
+    border-top: 1px solid rgba(226, 180, 151, 0.35);
+    margin: 7px 0;
+   }
+
+   /* Judul seksi sidebar */
+   #pdf-render-area.cv-pdf-mode .cv-sidebar-section-title {
+    color: #e2b497;
+    font-size: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 5px;
+   }
+
+   /* Kontak */
+   #pdf-render-area.cv-pdf-mode .cv-contact-item {
+    color: #c9cdd6;
+    font-size: 7.5px;
+    margin-bottom: 4px;
+    line-height: 1.35;
+    word-break: break-all;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-contact-item b {
+    color: #ffffff;
+    display: block;
+    font-size: 6.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+   }
+
+   /* Skills sidebar */
+   #pdf-render-area.cv-pdf-mode .cv-skill-category {
+    margin-bottom: 6px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-skill-cat-label {
+    color: #ffffff;
+    font-size: 7px;
+    font-weight: 600;
+    margin-bottom: 3px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-skill-tag {
+    background: rgba(226, 180, 151, 0.15);
+    border: 0.5px solid rgba(226, 180, 151, 0.4);
+    color: #d1d5db;
+    font-size: 6.5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+   }
+
+   /* Bahasa */
+   #pdf-render-area.cv-pdf-mode .cv-lang-item {
+    margin-bottom: 4px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-lang-name {
+    color: #ffffff;
+    font-size: 7.5px;
+    font-weight: 600;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-lang-level {
+    color: #9ca3af;
+    font-size: 6.5px;
+   }
+
+   /* Dot bar bahasa */
+   #pdf-render-area.cv-pdf-mode .cv-lang-dots {
+    display: flex;
+    gap: 2px;
+    margin-top: 2px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(226, 180, 151, 0.2);
+    border: 0.5px solid rgba(226, 180, 151, 0.5);
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-dot.filled {
+    background: #e2b497;
+   }
+
+   /* Education di sidebar */
+   #pdf-render-area.cv-pdf-mode .cv-edu-item {
+    margin-bottom: 5px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-edu-year {
+    color: #e2b497;
+    font-size: 6.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-edu-degree {
+    color: #ffffff;
+    font-size: 7.5px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 1px 0;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-edu-school {
+    color: #9ca3af;
+    font-size: 6.5px;
+    line-height: 1.3;
+   }
+
+   /* ── KOLOM KANAN ── */
+   #pdf-render-area.cv-pdf-mode .cv-pdf-main {
+    display: table-cell;
+    vertical-align: top;
+    padding: 10mm 8mm 8mm 8mm;
+    box-sizing: border-box;
+    background: #ffffff;
+   }
+
+   /* Header nama di kolom kanan (cadangan jika diperlukan) */
+   #pdf-render-area.cv-pdf-mode .cv-main-header {
+    border-bottom: 2px solid #1a1f2e;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-main-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1f2e;
+    line-height: 1.2;
+    font-family: 'Georgia', serif;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-main-subtitle {
+    font-size: 8.5px;
+    color: #e2b497;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+   }
+
+   /* Summary kolom kanan */
+   #pdf-render-area.cv-pdf-mode .cv-main-summary {
+    font-size: 7.5px;
+    color: #374151;
+    line-height: 1.5;
+    text-align: justify;
+    margin-bottom: 9px;
+    background: #f8f9fa;
+    border-left: 3px solid #e2b497;
+    padding: 5px 7px;
+    border-radius: 0 4px 4px 0;
+   }
+
+   /* Judul seksi di kolom kanan */
+   #pdf-render-area.cv-pdf-mode .cv-main-section-title {
+    font-size: 9px;
+    font-weight: 700;
+    color: #1a1f2e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1.5px solid #e2b497;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
+    margin-top: 9px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-main-section-title:first-of-type {
+    margin-top: 0;
+   }
+
+   /* Experience items */
+   #pdf-render-area.cv-pdf-mode .cv-exp-item {
+    margin-bottom: 6px;
+    padding-left: 9px;
+    border-left: 2px solid #e2b497;
+    position: relative;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e2b497;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-period {
+    font-size: 6.5px;
+    color: #e2b497;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-role {
+    font-size: 8px;
+    font-weight: 700;
+    color: #1a1f2e;
+    margin: 1px 0;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-company {
+    font-size: 7px;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 2px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-desc {
+    font-size: 6.8px;
+    color: #374151;
+    line-height: 1.4;
+    list-style: none;
+    padding: 0;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-desc li::before {
+    content: '▸ ';
+    color: #e2b497;
+    font-size: 6px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-exp-desc li {
+    margin-bottom: 1px;
+   }
+
+   #pdf-render-area.cv-pdf-mode .cv-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;          /* ← kunci utama: memotong gambar agar tidak meluber */
+    border: 2px solid #e2b497;
+    display: block;
+    margin: 0 auto 6px auto;
+  }
+
+  #pdf-render-area.cv-pdf-mode .cv-avatar img {
+    width: 100%;               /* ← ikuti lebar container (52px) */
+    height: 100%;              /* ← ikuti tinggi container (52px) */
+    object-fit: cover;         /* ← crop proporsional agar wajah tetap centered */
+    object-position: center;
+    display: block;
+  }
+
   </style>
  </head>
  <body>
@@ -564,6 +849,7 @@
     </button>
    </div>
    <div class="display-card" id="printable-content">
+    <!-- ── CV PANEL (tampilan web, tidak diubah) ── -->
     <div id="cv-panel" class="panel-view current-view">
      <div class="action-container">
       <button class="btn-download" id="download-cv-btn">
@@ -589,15 +875,8 @@
        <h5 class="node-sub">Emasku_id — Indonesia</h5>
        <div class="node-details">
         <ul>
-         <li>
-          Founded and managed a micro-investment and gold trading initiative,
-          overseeing daily operations, financial tracking, and customer
-          relations.
-         </li>
-         <li>
-          Developed targeted digital marketing strategies to promote alternative
-          asset options and build long-term trust with clients.
-         </li>
+         <li>Founded and managed a micro-investment and gold trading initiative, overseeing daily operations, financial tracking, and customer relations.</li>
+         <li>Developed targeted digital marketing strategies to promote alternative asset options and build long-term trust with clients.</li>
         </ul>
        </div>
       </div>
@@ -607,15 +886,8 @@
        <h5 class="node-sub">YouTube & CapCut — Remote</h5>
        <div class="node-details">
         <ul>
-         <li>
-          Self-taught advanced mobile and desktop video editing techniques,
-          producing content that garnered thousands of organic views.
-         </li>
-         <li>
-          Selected as an official CapCut Template Creator, experimenting with
-          visual layouts, cinematic transitions, and storytelling to maximize
-          user engagement.
-         </li>
+         <li>Self-taught advanced mobile and desktop video editing techniques, producing content that garnered thousands of organic views.</li>
+         <li>Selected as an official CapCut Template Creator, experimenting with visual layouts, cinematic transitions, and storytelling to maximize user engagement.</li>
         </ul>
        </div>
       </div>
@@ -625,15 +897,8 @@
        <h5 class="node-sub">Glory Cell / Glory Shop — Indonesia</h5>
        <div class="node-details">
         <ul>
-         <li>
-          Successfully operated a retail mobile counter business, managing over
-          300 inventory items and maintaining an average monthly turnover of IDR
-          35 Million.
-         </li>
-         <li>
-          Optimized retail shelf layouts for premium visual product positioning
-          and handled direct high-volume daily customer inquiries.
-         </li>
+         <li>Successfully operated a retail mobile counter business, managing over 300 inventory items and maintaining an average monthly turnover of IDR 35 Million.</li>
+         <li>Optimized retail shelf layouts for premium visual product positioning and handled direct high-volume daily customer inquiries.</li>
         </ul>
        </div>
       </div>
@@ -643,10 +908,7 @@
        <h5 class="node-sub">PT AEON Credit Service Indonesia</h5>
        <div class="node-details">
         <ul>
-         <li>
-          Identified high-potential consumer applicants and presented
-          point-of-sale credit solutions to increase retail partner revenue.
-         </li>
+         <li>Identified high-potential consumer applicants and presented point-of-sale credit solutions to increase retail partner revenue.</li>
         </ul>
        </div>
       </div>
@@ -656,14 +918,8 @@
        <h5 class="node-sub">PT Accentuates — Jakarta, Indonesia</h5>
        <div class="node-details">
         <ul>
-         <li>
-          Demonstrated high-end device features to consumers and evaluated daily
-          sales inventory logs.
-         </li>
-         <li>
-          Awarded a professional Series Reward Incentive Trip to Bangkok,
-          Thailand, for outstanding sales quota achievements.
-         </li>
+         <li>Demonstrated high-end device features to consumers and evaluated daily sales inventory logs.</li>
+         <li>Awarded a professional Series Reward Incentive Trip to Bangkok, Thailand, for outstanding sales quota achievements.</li>
         </ul>
        </div>
       </div>
@@ -675,25 +931,17 @@
       <div class="node-item">
        <div class="node-meta">GRADUATED 2024</div>
        <h4 class="node-header">Bachelor of Education in English</h4>
-       <h5 class="node-sub">
-        Universitas Indraprasta PGRI — Jakarta, Indonesia
-       </h5>
+       <h5 class="node-sub">Universitas Indraprasta PGRI — Jakarta, Indonesia</h5>
        <p class="node-details" style="font-size: 0.95rem; padding-left: 1.2rem">
-        Relevant Coursework: Computer Assisted Language Learning, Educational
-        Research Statistics, Computer Applications.
+        Relevant Coursework: Computer Assisted Language Learning, Educational Research Statistics, Computer Applications.
        </p>
       </div>
       <div class="node-item">
        <div class="node-meta">EARNED 2026</div>
-       <h4 class="node-header">
-        German Language Training Scholarship (Level B1)
-       </h4>
-       <h5 class="node-sub">
-        Provincial Government of West Java (Pemprov Jawa Barat)
-       </h5>
+       <h4 class="node-header">German Language Training Scholarship (Level B1)</h4>
+       <h5 class="node-sub">Provincial Government of West Java (Pemprov Jawa Barat)</h5>
        <p class="node-details" style="font-size: 0.95rem; padding-left: 1.2rem">
-        Selected into an intensive language program, successfully advancing
-        professional cross-cultural communications to European B1 standards.
+        Selected into an intensive language program, successfully advancing professional cross-cultural communications to European B1 standards.
        </p>
       </div>
      </div>
@@ -730,6 +978,8 @@
       </div>
      </div>
     </div>
+
+    <!-- ── PORTFOLIO PANEL (tampilan web, tidak diubah) ── -->
     <div id="portfolio-panel" class="panel-view">
      <div class="action-container">
       <button class="btn-download" id="download-portfolio-btn">
@@ -738,25 +988,12 @@
      </div>
      <div class="showcase-item">
       <div class="showcase-display">
-       <img
-        src="photos/emasid.jpeg?q=80&w=600&auto=format&fit=crop"
-        alt="Emasku_id Showcase"
-       />
+       <img src="photos/emasid.jpeg?q=80&w=600&auto=format&fit=crop" alt="Emasku_id Showcase" />
       </div>
       <div class="showcase-info">
        <h3>Emasku_id</h3>
        <div class="showcase-subtitle">E-Commerce</div>
-       <p>
-        This self-initiated entrepreneurial venture focuses on the strategic
-        retail and distribution of certified gold assets, including Antam,
-        Hartadinata, and Galeri24 products. Operating as an individual founder,
-        I architected a multi-platform digital store presence utilizing major
-        e-commerce ecosystems such as Tokopedia, TikTok Shop, and Shopee to
-        capture diverse market segments. The initiative drove a substantial
-        business impact by establishing a highly accessible and trusted online
-        gateway for micro-investments, maximizing digital brand visibility, and
-        streamlining nationwide transaction fulfillment.
-       </p>
+       <p>This self-initiated entrepreneurial venture focuses on the strategic retail and distribution of certified gold assets, including Antam, Hartadinata, and Galeri24 products. Operating as an individual founder, I architected a multi-platform digital store presence utilizing major e-commerce ecosystems such as Tokopedia, TikTok Shop, and Shopee to capture diverse market segments. The initiative drove a substantial business impact by establishing a highly accessible and trusted online gateway for micro-investments, maximizing digital brand visibility, and streamlining nationwide transaction fulfillment.</p>
        <div class="badge-cloud">
         <span class="skill-badge">Supply Chain</span>
         <span class="skill-badge">Multi-Channel E-Commerce</span>
@@ -766,27 +1003,12 @@
      </div>
      <div class="showcase-item">
       <div class="showcase-display">
-       <img
-        src="photos/Usaha.jpeg?q=80&w=600&auto=format&fit=crop"
-        alt="Glory Cell Showcase"
-       />
+       <img src="photos/Usaha.jpeg?q=80&w=600&auto=format&fit=crop" alt="Glory Cell Showcase" />
       </div>
       <div class="showcase-info">
        <h3>Glory Cell</h3>
-       <div class="showcase-subtitle">
-        Micro-Retail & Digital Financial Services
-       </div>
-       <p>
-        This self-initiated enterprise was a local micro-retail and essential
-        services hub that I owned and managed individually. I built the business
-        infrastructure to provide diversified solutions, including high-volume
-        photocopying and printing, mobile airtime/electricity token
-        distribution, utility billing settlements, and secured micro-pawn
-        services. The business delivered a vital community impact by serving as
-        a central, one-stop solution for neighborhood digital needs, maintaining
-        high customer retention, and generating an average monthly turnover of
-        IDR 35 Million through optimized service delivery.
-       </p>
+       <div class="showcase-subtitle">Micro-Retail & Digital Financial Services</div>
+       <p>This self-initiated enterprise was a local micro-retail and essential services hub that I owned and managed individually. I built the business infrastructure to provide diversified solutions, including high-volume photocopying and printing, mobile airtime/electricity token distribution, utility billing settlements, and secured micro-pawn services. The business delivered a vital community impact by serving as a central, one-stop solution for neighborhood digital needs, maintaining high customer retention, and generating an average monthly turnover of IDR 35 Million through optimized service delivery.</p>
        <div class="badge-cloud">
         <span class="skill-badge">Cash Flow Management</span>
         <span class="skill-badge">Consumer Behavior</span>
@@ -796,25 +1018,12 @@
      </div>
      <div class="showcase-item">
       <div class="showcase-display">
-       <img
-        src="photos/ytb.jpg?q=80&w=600&auto=format&fit=crop"
-        alt="Case Review Documentaries Showcase"
-       />
+       <img src="photos/ytb.jpg?q=80&w=600&auto=format&fit=crop" alt="Case Review Documentaries Showcase" />
       </div>
       <div class="showcase-info">
        <h3>Case Review Documentaries</h3>
-       <div class="showcase-subtitle">
-        YouTube Content Creation & Media Strategy
-       </div>
-       <p>
-        This self-initiated digital media project focuses on researching,
-        scriptwriting, and producing documentary-style video essays that analyze
-        real-life cases, true stories, and personal experiences. Working as an
-        independent content creator, I managed the entire production pipeline,
-        transforming complex real-world events into structured narrative videos
-        aimed av delivering critical social lessons and preventative awareness
-        to the public.
-       </p>
+       <div class="showcase-subtitle">YouTube Content Creation & Media Strategy</div>
+       <p>This self-initiated digital media project focuses on researching, scriptwriting, and producing documentary-style video essays that analyze real-life cases, true stories, and personal experiences. Working as an independent content creator, I managed the entire production pipeline, transforming complex real-world events into structured narrative videos aimed at delivering critical social lessons and preventative awareness to the public.</p>
        <div class="badge-cloud">
         <span class="skill-badge">Digital Storytelling</span>
         <span class="skill-badge">Viewer Analytics</span>
@@ -824,24 +1033,12 @@
      </div>
      <div class="showcase-item">
       <div class="showcase-display">
-       <img
-        src="photos/Capcut.jpeg?q=80&w=600&auto=format&fit=crop"
-        alt="CapCut Template Showcase"
-       />
+       <img src="photos/Capcut.jpeg?q=80&w=600&auto=format&fit=crop" alt="CapCut Template Showcase" />
       </div>
       <div class="showcase-info">
        <h3>CapCut Asset Design</h3>
-       <div class="showcase-subtitle">
-        Interactive Visual Template Architecture
-       </div>
-       <p>
-        This self-initiated creative project involves conceptualizing and
-        engineering user-centric video editing templates as an officially
-        recognized CapCut Creator. Operating as an individual asset designer, I
-        systematically research viral soundscapes, cinematic transition trends,
-        and modern pacing patterns to construct scalable, ready-to-use editing
-        frameworks for millions of global mobile creators.
-       </p>
+       <div class="showcase-subtitle">Interactive Visual Template Architecture</div>
+       <p>This self-initiated creative project involves conceptualizing and engineering user-centric video editing templates as an officially recognized CapCut Creator. Operating as an individual asset designer, I systematically research viral soundscapes, cinematic transition trends, and modern pacing patterns to construct scalable, ready-to-use editing frameworks for millions of global mobile creators.</p>
        <div class="badge-cloud">
         <span class="skill-badge">Short-Form Media Trends</span>
         <span class="skill-badge">UX Preferences</span>
@@ -851,34 +1048,24 @@
      </div>
     </div>
    </div>
+
    <footer>
     <div class="channel-links">
-     <a href="mailto:sagalajessica7@gmail.com" title="Email Me"
-      ><i class="fa-regular fa-envelope"></i
-     ></a>
-     <a
-      href="https://www.linkedin.com/in/jessicasagala"
-      target="_blank"
-      title="LinkedIn"
-      ><i class="fa-brands fa-linkedin-in"></i
-     ></a>
-     <a
-      href="https://sagalajessica7.github.io/my-profile/"
-      target="_blank"
-      title="GitHub"
-      ><i class="fa-brands fa-github"></i
-     ></a>
+     <a href="mailto:sagalajessica7@gmail.com" title="Email Me"><i class="fa-regular fa-envelope"></i></a>
+     <a href="https://www.linkedin.com/in/jessicasagala" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+     <a href="https://sagalajessica7.github.io/my-profile/" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
     </div>
-    <p>
-     &copy; 2026 Jessica Sarah Mei Sagala. Protected & Sanitized Public
-     Portfolio.
-    </p>
+    <p>&copy; 2026 Jessica Sarah Mei Sagala. Protected & Sanitized Public Portfolio.</p>
    </footer>
   </div>
+
+  <!-- ── AREA RENDER PDF (hidden di web, hanya dipakai saat export) ── -->
   <div id="pdf-render-area"></div>
+
   <script>
    $(document).ready(function () {
-    // Logika Tab Navigasi
+
+    /* ─── Navigasi Tab ─── */
     $(".tab-btn").on("click", function () {
      if ($(this).hasClass("active-tab")) return;
      $(".tab-btn").removeClass("active-tab");
@@ -889,52 +1076,280 @@
       $(selectedPanel).fadeIn(300).addClass("current-view");
      });
     });
-    
-    function generatePDF(panelId, filename) {
+
+    /* ─────────────────────────────────────────────────────────────
+       FUNGSI: Export CV PDF — Layout Kreatif 1 Halaman A4
+       Membangun HTML baru khusus PDF di dalam #pdf-render-area,
+       TIDAK menyentuh tampilan web sama sekali.
+    ───────────────────────────────────────────────────────────── */
+    function generateCVPDF() {
      var renderArea = document.getElementById("pdf-render-area");
-     renderArea.innerHTML = "";
-     var headerClone = $(".hero-block").clone();
-     headerClone.removeClass().addClass("pdf-header");
-     var panelClone = $("#" + panelId).clone();
-     panelClone.find(".action-container").remove();
-     $(renderArea).append(headerClone).append(panelClone);
-     $(renderArea).addClass("pdf-print-mode").show();
-     
+
+     /* Bangun template HTML PDF dari scratch */
+     renderArea.innerHTML = `
+      <div class="cv-pdf-wrapper">
+
+        <!-- ══ SIDEBAR KIRI ══ -->
+        <div class="cv-pdf-sidebar">
+
+          <!-- Avatar Inisial -->
+          <div class="cv-avatar">
+           <img src="photos/jessica-avatar.jpg" alt="Jessica Avatar" />
+          </div>
+          <div class="cv-sidebar-name">Jessica Sarah<br>Mei Sagala</div>
+          <div class="cv-sidebar-title">Educator &amp; Digital Entrepreneur</div>
+
+          <hr class="cv-sidebar-divider">
+
+          <!-- Kontak -->
+          <div class="cv-sidebar-section-title">Contact</div>
+          <div class="cv-contact-item"><b>Email</b>sagalajessica7@gmail.com</div>
+          <div class="cv-contact-item"><b>LinkedIn</b>linkedin.com/in/jessicasagala</div>
+          <div class="cv-contact-item"><b>GitHub</b>sagalajessica7.github.io</div>
+          <div class="cv-contact-item"><b>Location</b>Jakarta, Indonesia</div>
+
+          <hr class="cv-sidebar-divider">
+
+          <!-- Bahasa -->
+          <div class="cv-sidebar-section-title">Languages</div>
+
+          <div class="cv-lang-item">
+            <div class="cv-lang-name">Indonesian</div>
+            <div class="cv-lang-level">Native</div>
+            <div class="cv-lang-dots">
+              <div class="cv-dot filled"></div><div class="cv-dot filled"></div>
+              <div class="cv-dot filled"></div><div class="cv-dot filled"></div>
+              <div class="cv-dot filled"></div>
+            </div>
+          </div>
+          <div class="cv-lang-item" style="margin-top:4px">
+            <div class="cv-lang-name">English</div>
+            <div class="cv-lang-level">Academic / Professional</div>
+            <div class="cv-lang-dots">
+              <div class="cv-dot filled"></div><div class="cv-dot filled"></div>
+              <div class="cv-dot filled"></div><div class="cv-dot filled"></div>
+              <div class="cv-dot"></div>
+            </div>
+          </div>
+          <div class="cv-lang-item" style="margin-top:4px">
+            <div class="cv-lang-name">German</div>
+            <div class="cv-lang-level">B1 Certified (Gov. Scholarship)</div>
+            <div class="cv-lang-dots">
+              <div class="cv-dot filled"></div><div class="cv-dot filled"></div>
+              <div class="cv-dot filled"></div><div class="cv-dot"></div>
+              <div class="cv-dot"></div>
+            </div>
+          </div>
+
+          <hr class="cv-sidebar-divider">
+
+          <!-- Skill -->
+          <div class="cv-sidebar-section-title">Core Skills</div>
+
+          <div class="cv-skill-category">
+            <div class="cv-skill-cat-label">Business</div>
+            <div class="cv-skill-tags">
+              <span class="cv-skill-tag">Entrepreneurship</span>
+              <span class="cv-skill-tag">Retail Ops</span>
+              <span class="cv-skill-tag">Financial Planning</span>
+            </div>
+          </div>
+          <div class="cv-skill-category">
+            <div class="cv-skill-cat-label">Creative &amp; Tech</div>
+            <div class="cv-skill-tags">
+              <span class="cv-skill-tag">Video Editing</span>
+              <span class="cv-skill-tag">Content Strategy</span>
+              <span class="cv-skill-tag">MS Excel</span>
+              <span class="cv-skill-tag">Canva</span>
+            </div>
+          </div>
+          <div class="cv-skill-category">
+            <div class="cv-skill-cat-label">Digital Marketing</div>
+            <div class="cv-skill-tags">
+              <span class="cv-skill-tag">Multi-Channel E-Com</span>
+              <span class="cv-skill-tag">Marketplace Ads</span>
+              <span class="cv-skill-tag">CapCut Creator</span>
+            </div>
+          </div>
+
+          <hr class="cv-sidebar-divider">
+
+          <!-- Pendidikan -->
+          <div class="cv-sidebar-section-title">Education</div>
+
+          <div class="cv-edu-item">
+            <div class="cv-edu-year">2024 · Bachelor's Degree</div>
+            <div class="cv-edu-degree">Bachelor of Education in English</div>
+            <div class="cv-edu-school">Universitas Indraprasta PGRI, Jakarta</div>
+          </div>
+          <div class="cv-edu-item">
+            <div class="cv-edu-year">2026 · Government Scholarship</div>
+            <div class="cv-edu-degree">German Language B1</div>
+            <div class="cv-edu-school">Pemprov Jawa Barat Intensive Program</div>
+          </div>
+
+        </div><!-- /sidebar -->
+
+        <!-- ══ KOLOM KANAN ══ -->
+        <div class="cv-pdf-main">
+
+          <!-- Header nama -->
+          <div class="cv-main-header">
+            <div class="cv-main-title">Jessica Sarah Mei Sagala</div>
+            <div class="cv-main-subtitle">Educator &amp; Creative Digital Entrepreneur</div>
+          </div>
+
+          <!-- Professional Summary -->
+          <div class="cv-main-summary">
+            Dynamic Bachelor of Education graduate with a strong entrepreneurial mindset and passion for digital creation.
+            Over 5 years managing retail and micro-investment businesses, while self-teaching advanced video editing.
+            Government language scholarship recipient (German B1), now transitioning into the global technology ecosystem.
+          </div>
+
+          <!-- Experience -->
+          <div class="cv-main-section-title">Professional Experience</div>
+
+          <div class="cv-exp-item">
+            <div class="cv-exp-period">2025 – Present</div>
+            <div class="cv-exp-role">Founder &amp; Owner — Emasku_id</div>
+            <div class="cv-exp-company">Gold Micro-Investment &amp; E-Commerce · Indonesia</div>
+            <ul class="cv-exp-desc">
+              <li>Founded gold trading initiative across Tokopedia, TikTok Shop &amp; Shopee; managed operations &amp; client relations.</li>
+              <li>Developed digital marketing strategies for alternative asset promotion, building long-term client trust.</li>
+            </ul>
+          </div>
+
+          <div class="cv-exp-item">
+            <div class="cv-exp-period">2024 – Present</div>
+            <div class="cv-exp-role">Independent Digital Content Creator</div>
+            <div class="cv-exp-company">YouTube &amp; CapCut · Remote</div>
+            <ul class="cv-exp-desc">
+              <li>Self-taught video editing; produced content with thousands of organic views on YouTube.</li>
+              <li>Officially recognized CapCut Template Creator — designed cinematic, viral-ready editing frameworks.</li>
+            </ul>
+          </div>
+
+          <div class="cv-exp-item">
+            <div class="cv-exp-period">2020 – 2025</div>
+            <div class="cv-exp-role">Business Owner &amp; Manager — Glory Cell / Glory Shop</div>
+            <div class="cv-exp-company">Micro-Retail &amp; Digital Services · Indonesia</div>
+            <ul class="cv-exp-desc">
+              <li>Managed 300+ inventory items; achieved avg. monthly turnover of IDR 35 Million.</li>
+              <li>Optimized retail layout &amp; handled high-volume daily customer service.</li>
+            </ul>
+          </div>
+
+          <div class="cv-exp-item">
+            <div class="cv-exp-period">2019 – 2020</div>
+            <div class="cv-exp-role">Marketing Staff — PT AEON Credit Service Indonesia</div>
+            <div class="cv-exp-company">Consumer Finance · Indonesia</div>
+            <ul class="cv-exp-desc">
+              <li>Identified high-potential applicants and presented point-of-sale credit solutions to boost retail partner revenue.</li>
+            </ul>
+          </div>
+
+          <div class="cv-exp-item">
+            <div class="cv-exp-period">2017 – 2018</div>
+            <div class="cv-exp-role">Senior Experience Consultant — PT Accentuates</div>
+            <div class="cv-exp-company">Consumer Electronics · Jakarta, Indonesia</div>
+            <ul class="cv-exp-desc">
+              <li>Demonstrated premium device features; maintained daily sales inventory logs.</li>
+              <li>Awarded incentive trip to Bangkok for outstanding sales quota achievement.</li>
+            </ul>
+          </div>
+
+        </div><!-- /main -->
+
+      </div><!-- /cv-pdf-wrapper -->
+     `;
+
+     /* Aktifkan class mode PDF */
+     renderArea.className = "cv-pdf-mode";
+     renderArea.style.display = "block";
+
      var opt = {
-      margin: [15, 15, 15, 15],
-      filename: filename,
-      image: { type: "jpeg", quality: 1.0 }, // Menaikkan kompresi kualitas gambar ke 100% maks
+      margin: 0,
+      filename: "CV_Jessica_Sarah_Mei_Sagala.pdf",
+      image: { type: "jpeg", quality: 1.0 },
       html2canvas: {
        scale: 2,
        useCORS: true,
        logging: false,
        letterRendering: true,
-       backgroundColor: "#ffffff", // Mengunci kanvas agar dasar cetak mutlak putih murni
+       backgroundColor: "#ffffff",
+       width: 794,   /* 210mm @ 96dpi */
+       height: 1123, /* 297mm @ 96dpi */
       },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
      };
-     
+
      setTimeout(function () {
       html2pdf()
        .set(opt)
        .from(renderArea)
        .save()
        .then(function () {
-        $(renderArea).hide().removeClass("pdf-print-mode").innerHTML = "";
+        renderArea.style.display = "none";
+        renderArea.className = "";
+        renderArea.innerHTML = "";
        })
        .catch(function (error) {
-        console.error("PDF Export Error: ", error);
-        $(renderArea).hide().removeClass("pdf-print-mode");
+        console.error("CV PDF Export Error:", error);
+        renderArea.style.display = "none";
+        renderArea.className = "";
+        renderArea.innerHTML = "";
        });
-     }, 600); // Memberikan jeda stabil agar kloning tersusun rapi di memori DOM browser
+     }, 700);
     }
-    
-    $("#download-cv-btn").on("click", function () {
-     generatePDF("cv-panel", "CV_Jessica_Sarah_Mei_Sagala.pdf");
-    });
-    $("#download-portfolio-btn").on("click", function () {
-     generatePDF("portfolio-panel", "Portfolio_Jessica_Sarah_Mei_Sagala.pdf");
-    });
+
+    /* ─── Export Portfolio PDF (tidak berubah) ─── */
+    function generatePortfolioPDF() {
+     var renderArea = document.getElementById("pdf-render-area");
+     renderArea.innerHTML = "";
+     var headerClone = $(".hero-block").clone();
+     headerClone.removeClass().addClass("pdf-header");
+     var panelClone = $("#portfolio-panel").clone();
+     panelClone.find(".action-container").remove();
+     $(renderArea).append(headerClone).append(panelClone);
+     renderArea.className = "pdf-print-mode";
+     renderArea.style.display = "block";
+
+     var opt = {
+      margin: [20, 15, 15, 15],
+      filename: "Portfolio_Jessica_Sarah_Mei_Sagala.pdf",
+      image: { type: "jpeg", quality: 1.0 },
+      html2canvas: {
+       scale: 2,
+       useCORS: true,
+       logging: false,
+       letterRendering: true,
+       backgroundColor: "#ffffff",
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+     };
+
+     setTimeout(function () {
+      html2pdf()
+       .set(opt)
+       .from(renderArea)
+       .save()
+       .then(function () {
+        renderArea.style.display = "none";
+        renderArea.className = "";
+        renderArea.innerHTML = "";
+       })
+       .catch(function (error) {
+        console.error("Portfolio PDF Error:", error);
+        renderArea.style.display = "none";
+        renderArea.className = "";
+       });
+     }, 600);
+    }
+
+    /* ─── Binding tombol ─── */
+    $("#download-cv-btn").on("click", function () { generateCVPDF(); });
+    $("#download-portfolio-btn").on("click", function () { generatePortfolioPDF(); });
+
    });
   </script>
  </body>
